@@ -1,0 +1,119 @@
+Gebruik
+=======
+
+Conventies
+----------
+
+Houd je aan de volgende conventies:
+
+-   Gebruik als extentie `.txt`, markdown is immers prima te lezen als
+    platte tekst.
+
+-   Gebruik *geen*, ik herhaal **geen**, spaties in je bestandsnamen.
+
+-   Gebruik de `Makefile` om je bestanden te onderhouden.
+
+-   Formateer je invoer voordat je commit, wees niet eigenwijs,
+    accepteer de standaard formateerregels van `pandoc`.
+
+Directorystructuur
+------------------
+
+Voeg aan je git repository de map `doc` toe met daaronder de mappen
+`pva`, `fo`, en `to`. Later kan je daar ook mappen voor je individuele
+verslagen aan toevoegen.
+
+Hieronder zie je de structuur voor deze `demo`.
+
+    .
+    └── doc
+        ├── demo
+        │   ├── Makefile
+        │   ├── aanleiding.txt
+        │   ├── gebruik.txt
+        │   ├── img
+        │   │   └── image.png
+        │   ├── markdown.txt
+        │   └── title.txt
+        ├── fo
+        │   └── Makefile
+        ├── pva
+        │   └── Makefile
+        └── to
+            └── Makefile
+
+Iedere map krijgt dezelfde opbouw als `demo`: dus met een kopie van
+`Makefile` en een reeks `.txt` bestanden.
+
+Gebruik van Make
+----------------
+
+De bijgeleverde `Makefile` kan je gebruiken voor het volgende:
+
+-   `make`
+
+    In de basis levert `make` je een leesbaar bestand op.
+
+-   `make fmt`
+
+    Je kan je invoer formateren met `make fmt`, het is een goed gebruik
+    dit voor committen te doen.
+
+-   `make clean`
+
+    Het bouwproces levert een aantal tijdelijke bestanden op die je heel
+    af en toe behoorlijk in de weg kunnen zitten.
+
+    Je kan deze tijdelijke bestanden verwijderen met `make clean`.
+
+    > Voeg deze bestanden (`.*.txt.md`) toe aan je `.gitignore`.
+
+-   `make fresh`
+
+    De nog meer botte variant van `make clean` waarmee ook je uitvoer
+    verwijderd wordt. Je houdt alleen een map met invoerbestanden over.
+
+Uitleg `Makefile`
+-----------------
+
+Deze demo bevat de volgende `Makefile`:
+
+``` {.makefile}
+# order of input, use `\` to separate lines
+txt = title.txt aanleiding.txt gebruik.txt \
+    markdown.txt
+
+out = _demo
+# target: usually any of docx, pdf, html, txt
+target = docx
+
+$(out).$(target): $(txt)
+    $(MAKE) prepare
+    pandoc -s -o $(out).$(target) .*.txt.md
+
+prepare:
+    for t in $(txt); do pandoc -s --id-prefix $$t -o .$$t.md $$t; done
+
+fmt:
+    for t in $(txt); do pandoc -s $$t -o $$t; done
+
+clean:
+    -rm .*.txt.md
+
+fresh: clean
+    -rm $(out).$(target)
+```
+
+Op de eerste regels vind je achter `txt` de volgorde van je
+invoerbestanden.
+
+De combinatie van `out` en `target` geven de uitvoer. Zelf vind ik het
+prettig mijn uitvoer met "`_`" te beginnen zodat ik het bovenaan in mijn
+`ls` resultaten vind, maar dat hoeft niet. De waarde achter `target`
+geeft aan in welk formaat je je uitvoer wilt hebben, `docx` is een goede
+start, voor `pdf` wordt LaTeX gebruikt, niet iedereen wil dit
+installeren. Ook kan je naar één groot markdown bestand (`txt`) of naar
+`html`.
+
+Het laatste gedeelte zijn de definities van de opdrachten uit de [vorige
+sectie](#gebruik-van-make).

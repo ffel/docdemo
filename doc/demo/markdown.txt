@@ -1,0 +1,97 @@
+Markdown Format
+===============
+
+Een eerste overzicht vind je in de [oorspronkelijke documentatie van
+MarkDown](https://daringfireball.net/projects/markdown/syntax). Ik heb
+mijn best gedaan om in deze demo ook het een en ander aan syntax te
+laten zien.
+
+Meer uitleg over Pandoc vind je op de [pandoc
+pagina's](http://pandoc.org/getting-started.html).
+
+Een heel korte introductie:
+
+Cursief en vet
+--------------
+
+``` {.markdown}
+*cursief*
+**vet**
+***cursief en vet***
+```
+
+In de praktijk is *cursief* genoeg.
+
+Links
+-----
+
+Een link bestaan uit `[link tekst](http://link)`.
+
+Afbeeldingen
+------------
+
+Een afbeelding lijkt heel veel op een link:
+
+``` {.markdown}
+![](img/image.png)
+```
+
+Bijvoorbeeld:
+
+![](img/image.png)
+
+Secties
+-------
+
+Zie hieronder de manier waarop je verschillende niveau secties kan
+maken[^1]:
+
+``` {.markdown}
+# sectie
+## subsectie
+### subsubsectie
+#### subsubsubsectie
+```
+
+Iedere sectie krijgt automatisch een id, zo heeft de bovenstaande sectie
+"cursief en vet" het id `#cursief-en-vet` gekregen zodat je gemakkelijk
+een link naar [sectie cursief en vet](#cursief-en-vet) kan invoeken.
+
+Je kan ook zelf id's toevoegen
+
+``` {.markdown}
+# sectie met eigen id {#eigen-id}
+```
+
+Tabellen
+--------
+
+Tabellen zijn een beetje een zwak punt in Markdown, dat geldt zeker voor
+die mega-tabellen die we in Word gewend zijn. Een zwak excuus is dat we
+in het algemeen iets te vaak geneigd zijn grote tabellen te maken.
+
+Zie voor alle info [de referentie over
+tabellen](http://pandoc.org/MANUAL.html#tables), maar hieronder een
+klein voorbeeld:
+
+    Right Left    Center  Default
+  ------- ------ -------- ---------
+       12 12        12    12
+      123 123      123    123
+        1 1         1     1
+
+Met name de twee spaties aan het begin van de regel zijn relevant.
+
+[^1]: Je vraagt je wellicht af waarom in deze voorbeeld geen `#` en `##`
+    secties voorkomen. In plaats daarvan vind je alleen:
+
+    ``` {.markdown}
+    Sectie
+    ======
+
+    Subsectie
+    ---------
+    ```
+
+    Dit komt omdat standaard `pandoc` naar de "onderstreepte versie"
+    formateert en ik ben daar wel aan gewend.

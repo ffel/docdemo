@@ -1,0 +1,30 @@
+Aanleiding
+==
+
+Softwareontwikkelaars schrijven veel code.  Goede softwareontwikkelaars schrijven ook goede documentatie.  Waarom zouden we voor documentatie andere tools gebruiken dan voor onze code?
+
+Het blijkt dat het heel goed mogelijk is om documentatie in platte tekst te schrijven. Iedereen kan dan zijn eigen favoriete editor gebruiken.  Ook kunnen we onze tools gebruiken om onze documentatie te verbeteren:
+
+-	Net als code kunnen we onze tekst formateren
+
+-	Net als code kunnen we onze documentatie in git opslaan en beheren (vooral de *blame* functie is ideaal!)
+
+-	We kunnen tooltjes gebruiken en zelfs zelf ontwikkelen om het documenteren gemakkelijker te maken.
+
+In dit project voeren we een experiment met als doel onze wiki, confluence, te vervangen door documentatie in platte tekst. Soms zal dat veel vreugde geven (bijvoorbeeld wanneer confluence er uit ligt), maar eerlijk is eerlijk, ik kan niet uitsluiten dat het soms wat frustratie oplevert.
+
+Zelf schrijf ik documentatie graag in de editor waarin ik ook de meeste code schrijf, maar er zijn allerlei Markdown editors beschikbaar die een iets meer wysiwyg ervaring geven.
+
+Een aantal tools die het leven gemakkelijk maken:
+
+-	`make`
+
+	Ik voeg `Makefile`s toe die helpen bij het samenstellen van documentatie uit je platte tekst.
+
+-	[pandoc](http://pandoc.org/installing.html)
+
+	Is goed in het verwerken en converteren van markdown.
+
+-	De [oorspronkelijke markdown documentatie](https://daringfireball.net/projects/markdown/syntax).
+
+	In de basis is het gelijk gebleven, pandoc heeft een aantal uitbreidingen, maar daarover komt meer informatie.
