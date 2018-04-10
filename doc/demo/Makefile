@@ -1,6 +1,5 @@
 # order of input, use `\` to separate lines
-txt = title.txt aanleiding.txt gebruik.txt \
-	markdown.txt
+txt = ??_*.txt
 
 out = _demo
 # target: usually any of docx, pdf, html, txt
