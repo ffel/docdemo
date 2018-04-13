@@ -5,5 +5,6 @@ See `doc/demo` for a short introduction to plain text documentation.
 
 History:
 
--   fix input file order
+-   refer to other file demo in `doc/ref`.
 
+-   fix input file order
