@@ -1,0 +1,12 @@
+---
+author:
+- Auteur
+date: April 2018
+title: Demo van document verwijzingen
+---
+
+Verwijzing naar ander document
+==============================
+
+Het [demo document](../demo/_demo.html) is cool, net name de [uitleg van
+de makefile](../demo/_demo.html#uitleg-makefile).
