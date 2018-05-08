@@ -1,0 +1,38 @@
+Git Inspector
+=============
+
+Nodig:
+
+-   [python 2](https://www.python.org/)
+
+-   [git inspector](https://github.com/ejwa/gitinspector)
+
+-   [cpp check](http://cppcheck.sourceforge.net/)
+
+Plaats de volgende `Makefile` naast je rootmap `myproject`[^1] van je
+git working directory:
+
+``` {.makefile}
+.PHONY: myproject
+
+stats=python /Library/Python/2.7/site-packages/gitinspector/gitinspector.py --grading -f c,cc,cpp,h,hh,hpp,py,sql,R,txt
+t = ../$@.txt
+d = printf "\# %s %s %s %s %s %s\n\n" `date` >> $t
+b = printf "\#\# %s\n\n\`\`\`\n" $$branch >> $t
+c = printf "\#\# cppcheck\n\n\`\`\`\n" >> $t
+e = printf "\`\`\`\n\n" >> $t
+gitinspect=cd $@ ; git checkout $$branch ; $b ; $(stats) >> $t; $e ; cd ..
+cppchk=cd $@ ; $c ; cppcheck --enable=all --inconclusive --std=posix . >> $t 2>&1 ; $e ; cd ..
+
+myproject:
+    cd $@; git pull
+    cd $@; $d
+    for branch in "master" "dev" ; do \
+        $(gitinspect) ; $(cppchk) ; \
+    done
+```
+
+Voer periodiek `make` uit, het script update je repo en verzamelt
+informatie over de genoemde branches, hier `master` en `dev`.
+
+[^1]: Gebruik hier natuurlijk de juiste naam van je root map
